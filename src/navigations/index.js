@@ -3,23 +3,28 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../screens/Login";
 import List from "../screens/List";
+import ProductDetails from '../screens/productDetails'
 const Stack = createStackNavigator();
 
 export default class RootNavigation extends React.Component {
   render() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator screenOptions={{headerShown:false}}>
           <Stack.Screen
-            options={{ headerShown: false }}
+           
             name="Login"
             component={Login}
           />
           <Stack.Screen
-             options={{ headerShown: false }}
+           
             name="List"
             component={List}
           />
+          <Stack.Screen 
+      
+          name="Detail" 
+          component={ProductDetails}/>
         </Stack.Navigator>
       </NavigationContainer>
     );

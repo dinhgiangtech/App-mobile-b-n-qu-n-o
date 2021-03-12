@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{defaultProps} from 'react'
 import {Text,View, TouchableOpacity,StyleSheet,SafeAreaView} from 'react-native'
 function Header({title,onBack})
 {
@@ -8,8 +8,9 @@ function Header({title,onBack})
             return null;
         }
         return(
-            <TouchableOpacity style={StyleSheet.backBtn} onPress={onBack}>
-            <Text style={StyleSheet.backText}>Back</Text>
+        
+        <TouchableOpacity style={styles.backBtn} onPress={onBack}>
+            <Text style={styles.backText}>Back</Text>
         </TouchableOpacity>
         )
     }
@@ -20,10 +21,7 @@ function Header({title,onBack})
     return (
         <SafeAreaView style={styles.safeAreaView}>
             <View style={styles.container}>
-            <TouchableOpacity style={StyleSheet.backBtn} onPress={onBack}>
-            <Text style={StyleSheet.backText}>Back</Text>
-        </TouchableOpacity>
-                {checkVisibleBackBtn}
+                {checkVisibleBackBtn()}
                 <Text style={styles.title}>
                     {title}
                 </Text>
@@ -47,8 +45,8 @@ const styles = StyleSheet.create({
     },
     backBtn: {
         position: 'absolute',
-        top: 20,
-        left: 20
+        left:20,
+        right: 20
     },
     backText: {
         fontSize: 20

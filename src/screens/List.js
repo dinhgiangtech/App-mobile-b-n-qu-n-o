@@ -16,22 +16,22 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import  Header  from "../components/Header";
+import Header from "../components/Header";
 
 const Stack = createStackNavigator();
-function ItemList(props) {
+function ItemList({navigation,data}) {
   return (
-    <TouchableOpacity onPress={()=>Alert("Buy")}>
+    <TouchableOpacity onPress={() => navigation.navigate("Detail",{id:data.id})}>
       <View style={styles.container}>
         <View>
-          <Image style={styles.image} source={{ uri: props.data.thumbImage }} />
+          <Image style={styles.image} source={{ uri: data.thumbImage }} />
         </View>
         <View style={styles.content}>
-          <Text style={styles.text}>{props.data.name}</Text>
+          <Text style={styles.text}>{data.name}</Text>
           <Text style={styles.text}>
-            {"Price: " + props.data.price + " VND"}
+            {"Price: " + data.price + " VND"}
           </Text>
-          <Text style={styles.text}>{"Color: " + props.data.colour}</Text>
+          <Text style={styles.text}>{"Color: " + data.colour}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -42,12 +42,12 @@ export default class List extends React.Component {
   render() {
     return (
       <View>
-      <Header/>
-      <FlatList
-        data={data}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => <ItemList data={item} />}
-      />
+        <Header />
+        <FlatList
+          data={data}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <ItemList navigation={this.props.navigation} data={item} />}
+        />
       </View>
     );
   }
